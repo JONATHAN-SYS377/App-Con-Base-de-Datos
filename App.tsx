@@ -8,9 +8,11 @@ import { StackNavigator } from './src/Navigator/StackNavigator';
 
 export const App = () => {
   return (
-    <NavigationContainer >
-      <StackNavigator/>
-    </NavigationContainer>
+    
+      <NavigationContainer >
+        <StackNavigator />
+      </NavigationContainer>
+  
   )
 }
 

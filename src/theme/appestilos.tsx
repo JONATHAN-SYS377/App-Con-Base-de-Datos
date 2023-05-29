@@ -184,7 +184,9 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
     borderLeftWidth: 1,
     borderLeftColor: '#C96A58',
-    paddingBottom:6
+    paddingBottom:6,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   modalContainer: {
     bottom: -100,
@@ -258,6 +260,25 @@ export const styles = StyleSheet.create({
     bottom: 0, // Posición desde la parte inferior
     backfaceVisibility: 'hidden'
   },
+  botonfecha:{
+    padding:10,
+    marginBottom:10,
+    justifyContent:'flex-start',
+    marginLeft:-230,
+  },
+
+  fab2: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#BBF5E8', // Color de fondo del botón
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+
   buttonText: {
     fontSize: 30,
     color: '#000000', // Color del texto del botón

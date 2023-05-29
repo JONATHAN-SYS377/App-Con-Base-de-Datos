@@ -6,6 +6,8 @@ import axios from 'axios';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { styles } from '../theme/appestilos';
 import { StackScreenProps } from '@react-navigation/stack';
+import { FAB } from 'react-native-paper';
+
 
 interface IUser {
     ID: string;
@@ -56,11 +58,11 @@ export const MostrarLista = ({ navigation }: Props) => {
     const [editData, setEditData] = useState<IUser | null>(null);
 
 
-        const [scrollContent, setScrollContent] = useState('');
+    const [scrollContent, setScrollContent] = useState('');
     const handleScroll = () => {
         // Realiza cualquier lógica adicional aquí si es necesario
         GetGestor()
-      };
+    };
 
     const GetGestor = () => {
         //192.168.1.115
@@ -120,12 +122,12 @@ export const MostrarLista = ({ navigation }: Props) => {
         SetNombreDesarrollador(item.Desarrollador);
     };
 
-    
+
 
     return (
 
         <View style={styles.PanelPrincipal2}>
-            <ScrollView  onScroll={handleScroll}>
+            <ScrollView onScroll={handleScroll}>
                 <FlatList
                     data={Datosvalue}
                     keyExtractor={(item: IUser) => item.ID}
@@ -133,10 +135,10 @@ export const MostrarLista = ({ navigation }: Props) => {
                         <View>
                             <View
                                 style={styles.Lista}>
-                                <Text style={styles.DatosLista}> ID: {item.ID}</Text>
-                                <Text style={styles.DatosLista}> Nombre: {item.Nombre}</Text>
-                                <Text style={styles.DatosLista}> Lanzamiento: {item.Lanzamiento}</Text>
-                                <Text style={styles.DatosLista}> Desarrollador: {item.Desarrollador}</Text>
+                                <Text style={styles.DatosLista}> Nota #: {item.ID}</Text>
+                                <Text style={styles.DatosLista}> Motivo Nota: {item.Nombre}</Text>
+                                <Text style={styles.DatosLista}> Fecha: {item.Lanzamiento}</Text>
+                                <Text style={styles.DatosLista}> Descripción: {item.Desarrollador}</Text>
                                 <View style={styles.containerBoton}>
                                     <TouchableOpacity onPress={() => openEditModal(item)}>
                                         <Image source={require('../Screens/edit_48px.png')} style={styles.SizeImage} />
@@ -153,10 +155,15 @@ export const MostrarLista = ({ navigation }: Props) => {
                 />
 
             </ScrollView>
-
-            <TouchableOpacity style={styles.fab}>
+            <FAB
+            
+            label={'+'}
+                style={styles.fab2}
+                onPress={() => navigation.navigate('Ingreso Datos')}
+            />
+            {/* <TouchableOpacity style={styles.fab}>
                 <Text style={styles.buttonText} onPress={() => navigation.navigate('Ingreso Datos')}>+</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <Modal
                 visible={modalVisible}
@@ -174,13 +181,13 @@ export const MostrarLista = ({ navigation }: Props) => {
                             limpiarCampos()
                             setModalVisible(false)
                         }}>
-                           <Image source={require('../Screens/close_window_48px.png')}  /> 
+                            <Image source={require('../Screens/close_window_48px.png')} />
                         </Pressable>
 
 
-                        <Text style={styles.modalTitle}>Editar Datos</Text>
+                        <Text style={styles.modalTitle}>Editar Recordatorios</Text>
 
-                        <Text style={styles.Label}>ID del Gestor</Text>
+                        <Text style={styles.Label}>Nota #</Text>
 
                         <TextInput
                             value={txtId}
@@ -192,7 +199,7 @@ export const MostrarLista = ({ navigation }: Props) => {
                         >
                         </TextInput>
 
-                        <Text style={styles.Label}>Nombre del Gestor</Text>
+                        <Text style={styles.Label}>Motivo de la nota</Text>
                         <TextInput
                             value={txtNombreGestor}
                             onChangeText={NombreGestor}
@@ -201,7 +208,7 @@ export const MostrarLista = ({ navigation }: Props) => {
                             id='nombre'>
                         </TextInput>
 
-                        <Text style={styles.Label}>Año de Lanzamiento</Text>
+                        <Text style={styles.Label}>Fecha</Text>
                         <TextInput
                             style={styles.TextBox}
                             value={TxtAñoLanzamiento}
@@ -210,7 +217,7 @@ export const MostrarLista = ({ navigation }: Props) => {
                             id='Lanzamiento'>
                         </TextInput>
 
-                        <Text style={styles.Label}>Desarrollado por</Text>
+                        <Text style={styles.Label}>Descripción de la nota</Text>
                         <TextInput
                             style={styles.TextBox}
                             value={TxtNombreDesarrollador}
